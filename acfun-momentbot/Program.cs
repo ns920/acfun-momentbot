@@ -14,6 +14,7 @@ namespace acfun_momentbot
 {
     class Program
     {
+
         static async Task Main(string[] args)
         {
             LogProvider.SetCurrentLogProvider(new ConsoleLogProvider());
