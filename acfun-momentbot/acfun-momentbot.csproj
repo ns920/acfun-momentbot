@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>acfun_momentbot</RootNamespace>
-	  <version>0.0.1</version>
+	  <version>0.0.2</version>
   </PropertyGroup>
 
   <ItemGroup>

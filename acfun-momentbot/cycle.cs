@@ -39,7 +39,15 @@ namespace acfun_momentbot
                             if (entity.feedList == null || entity.feedList.Length == 0) continue;
                             var entity1 = entity.feedList.First();
                             //判断是否有更新
-                            bool isUpdated = (up["newmomentid"].ToString()!=entity1.moment.momentId);
+                            bool isUpdated=false;
+                            try
+                            {
+                                isUpdated = (int.Parse(up["newmomentid"].ToString()) > int.Parse(entity1.moment.momentId));
+                            }
+                            catch(Exception e)
+                            {
+                                Console.WriteLine(e.Message);
+                            }
                             if(isUpdated)
                             {
                                 long uid = 0;
@@ -56,6 +64,13 @@ namespace acfun_momentbot
                                     long.TryParse(notifygroup.ToString(), out uid);
                                     if (uid > 0) api.SendPrivateMessage(uid, msg);
                                 }
+                                //回写entityid
+                                o["up"][i]["newmomentid"] = entity1.moment.momentId;
+                            }
+                            //撤回消息
+                            bool isCalceled= (int.Parse(up["newmomentid"].ToString()) < int.Parse(entity1.moment.momentId));
+                            if(isCalceled)
+                            {
                                 //回写entityid
                                 o["up"][i]["newmomentid"] = entity1.moment.momentId;
                             }
