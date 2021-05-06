@@ -42,7 +42,7 @@ namespace acfun_momentbot
                             bool isUpdated=false;
                             try
                             {
-                                isUpdated = (int.Parse(up["newmomentid"].ToString()) > int.Parse(entity1.moment.momentId));
+                                isUpdated = (int.Parse(up["newmomentid"].ToString()) < int.Parse(entity1.moment.momentId));
                             }
                             catch(Exception e)
                             {
@@ -68,7 +68,7 @@ namespace acfun_momentbot
                                 o["up"][i]["newmomentid"] = entity1.moment.momentId;
                             }
                             //撤回消息
-                            bool isCalceled= (int.Parse(up["newmomentid"].ToString()) < int.Parse(entity1.moment.momentId));
+                            bool isCalceled= (int.Parse(up["newmomentid"].ToString()) > int.Parse(entity1.moment.momentId));
                             if(isCalceled)
                             {
                                 //回写entityid
